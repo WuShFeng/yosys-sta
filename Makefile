@@ -2,9 +2,10 @@ PROJ_PATH = $(shell pwd)
 SHELL := /bin/bash
 
 O ?= $(PROJ_PATH)/result
-DESIGN ?= gcd
+DESIGN ?= top
 SDC_FILE ?= $(PROJ_PATH)/scripts/default.sdc
-RTL_FILES ?= $(shell find $(PROJ_PATH)/example -name "*.v")
+# RTL_FILES ?= $(shell find $(PROJ_PATH)/example -name "*.v")
+RTL_FILES ?= $(shell find /home/wushf/Desktop/ysyx-workbench/npc/vsrc -name "*.v")
 export CLK_FREQ_MHZ ?= 500
 export CLK_PORT_NAME ?= clk
 PDK = icsprout55
