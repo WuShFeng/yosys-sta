@@ -176,18 +176,8 @@ if { $strategy_type == "DELAY" } {
 yosys -import
 
 # read verilog files
-# Collect unique include directories so that `include directives resolve correctly
-set include_args {}
-set include_dirs {}
 foreach file $VERILOG_FILES {
-  set dir [file dirname $file]
-  if {$dir ni $include_dirs} {
-    lappend include_dirs $dir
-    lappend include_args "-I" $dir
-  }
-}
-foreach file $VERILOG_FILES {
-  read_verilog -sv {*}$include_args $file
+  read_verilog -sv $file
 }
 
 # generic synthesis (coarse)
