@@ -180,7 +180,20 @@ foreach file $VERILOG_FILES {
   read_verilog -sv $file
 }
 
-# generic synthesis (coarse)
+#===========================================================
+#   per-module area estimation (hierarchical, no flatten)
+#===========================================================
+hierarchy -check -top $DESIGN
+design -save __hier_area_snap
+synth -top $DESIGN
+foreach l $LIB_FILES { read_liberty -lib $l }
+dfflibmap {*}$LIBS {*}$EXCLUDE_CELLS
+abc {*}$LIBS {*}$EXCLUDE_CELLS
+opt_clean -purge
+tee -o $RESULT_DIR/synth_area_hier.txt stat -width {*}$LIBS
+design -load __hier_area_snap
+
+# generic synthesis (coarse) - main pass with flatten
 synth -top $DESIGN -flatten -run :fine
 
 share -aggressive
