@@ -2,11 +2,11 @@ PROJ_PATH = $(shell pwd)
 SHELL := /bin/bash
 
 O ?= $(PROJ_PATH)/result
-DESIGN ?= gcd
+DESIGN ?= ysyx_25060161
 SDC_FILE ?= $(PROJ_PATH)/scripts/default.sdc
-RTL_FILES ?= $(shell find $(PROJ_PATH)/example -name "*.v")
+RTL_FILES ?= /workspaces/ysyx/npc/build/ysyx_25060161.v
 export CLK_FREQ_MHZ ?= 500
-export CLK_PORT_NAME ?= clk
+export CLK_PORT_NAME ?= clock
 PDK = nangate45
 
 RESULT_DIR = $(O)/$(DESIGN)-$(CLK_FREQ_MHZ)MHz
